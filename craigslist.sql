@@ -23,13 +23,14 @@ CREATE TABLE users
 (
   id SERIAL PRIMARY KEY,
   username TEXT NOT NULL,
+  password TEXT NOT NULL,
   region_id INTEGER NOT NULL
 );
 
 INSERT INTO users
-  (username, region_id)
+  (username, password, region_id)
 VALUES
-  ('willsmith1123', 1);
+  ('willsmith1123', "fjisejfi0sfjiej", 1);
 
 CREATE TABLE category
 (
@@ -47,17 +48,19 @@ CREATE TABLE post
   id SERIAL PRIMARY KEY,
   title TEXT NOT NULL,
   text TEXT NOT NULL,
+  location TEXT NOT NULL,
   user_id INTEGER NOT NULL REFERENCES users(id),
   region_id INTEGER NOT NULL REFERENCES region(id),
   category_id INTEGER NOT NULL REFERENCES category(id)
 );
 
 INSERT INTO post
-  (title, text, user_id, region_id, category_id)
+  (title, text, location, user_id, region_id, category_id)
 VALUES
   (
     'ASUS GTX 1060',
     'Minimal use, no scratches',
+    'SampleLocation',
     1,
     1,
     1
